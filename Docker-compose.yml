@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=django_db
+      - POSTGRES_USER=manager_db
+      - POSTGRES_PASSWORD=passworddb
+
+
+  app:
+    build: .
+    container_name: Django-c
+    image: crud
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - db

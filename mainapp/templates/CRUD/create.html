@@ -1,0 +1,13 @@
+{%extends 'base.html'%} {%block content%} {%csrf_token%}
+<div class="col-md-6 offset-md-4">
+  <form method="POST" action="{% url 'create' %}">
+    {%csrf_token%}
+    <h1>Create a new Student</h1>
+    <br />
+    {{form.as_p}}
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a class="btn btn-secondary" href="{%url 'home'%}">Cancel</a>
+  </form>
+  <br />
+</div>
+{%endblock%}

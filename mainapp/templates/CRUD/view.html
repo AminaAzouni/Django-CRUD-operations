@@ -1,0 +1,31 @@
+{%extends 'base.html'%} {%block content%}
+<form method="POST" action="{% url 'delete' pk=student.id%}">
+  {%csrf_token%}
+  <div class="col-md-6 offset-md-4">
+    <br />
+    <div class="card border-info mb-3 mt-4" style="max-width: 20rem;">
+      <div class="card-header" style="text-align: center;">
+        <strong>Student Info</strong>
+      </div>
+
+      <div class="card-body">
+        <h5 class="card-title" style="text-align: center;">{{student.name}}</h5>
+        <p class="card-text"><strong>Age : </strong> {{student.age}}</p>
+        <p class="card-text"><strong>Gender : </strong> {{student.gender}}</p>
+        <p class="card-text"><strong>Email : </strong> {{student.email}}</p>
+        <p class="card-text">
+          <strong>Created_at : </strong> {{student.created_at}}
+        </p>
+      </div>
+    </div>
+    <a
+      class="btn btn-primary"
+      type="button"
+      href="{%url 'update' pk=student.id%}"
+      >Edit</a
+    >
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a class="btn btn-secondary" type="button" href="{%url 'home'%}">Return</a>
+  </div>
+</form>
+{%endblock%}

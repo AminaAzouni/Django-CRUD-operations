@@ -1,0 +1,60 @@
+{% extends 'base.html' %} {% block content %}
+<div class="m-4">
+  <h5>Welcome {{ user }}! 👋</h5>
+  <hr />
+</div>
+<div class="container  ">
+  <a
+    class="btn btn-outline-primary btn-sm"
+    href="{% url 'create' %}"
+    type="button"
+    >Create a new Student &nbsp;
+    <i class="fa fa-plus-circle" aria-hidden="true"></i
+  ></a>
+  <hr />
+  <table class="table table-hover table-bordered ">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Age</th>
+        <th scope="col">Gender</th>
+        <th scope="col">View</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      {% for student in students %}
+      <tr>
+        <th scope="row">{{ student.id }}</th>
+        <td>{{ student.name }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.age }}</td>
+        <td>{{ student.gender }}</td>
+        <td>
+          <a
+            class="btn btn-outline-dark btn-sm"
+            href="{% url 'detail' pk=student.id %}"
+          >
+            <i class="fa fa-eye" aria-hidden="true"></i>
+          </a>
+        </td>
+        <td>
+          <form method="POST" action="{% url 'delete' pk=student.id %}">
+            {% csrf_token %}
+            <button
+              name="delete_student"
+              class="btn btn-danger"
+              value="{{student.id }}"
+            >
+              Delete
+            </button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
