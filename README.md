@@ -1,5 +1,5 @@
 # Django-CRUD-operations
-** Django CRUD (Create/ Read / Update / Delete) with PostgreSQL
+ Django CRUD (Create/ Read / Update / Delete) with PostgreSQL
 ## Run with Docker:
   ### 1. Install docker on your os
   ### 2. Install docker-compose on your os
